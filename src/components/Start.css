@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+#start {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 150px);
+}
+
+#start .link {
+  font-size: 3rem;
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#start .link:hover {
+  color: #FCA800;
+}
+
+#start .link:after {
+  display: block;
+  content: '';
+  transform: scaleX(0);
+  transform-origin: 0% 50%;
+  transition: transform 250ms ease-in-out;
+  border-bottom: 4px solid #FCA800;
+}
+
+#start .link:hover:after {
+  transform: scaleX(1);
+  transform-origin: 0% 50%;
+}
