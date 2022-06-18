@@ -8,9 +8,13 @@
 
 #dashboard h1 {
   text-align: center;
+  font-family: 'Roboto', sans-serif;
 }
 
 #dashboard #chart-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
   width: 100%;
   height: 100%;
 }

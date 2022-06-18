@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import GaugeChart from 'react-gauge-chart'
+
 import './Dashboard.css'
+import Gauge from './Gauge'
 
 const Dashboard = () => {
   const [sensors, setSensors] = useState([])
@@ -19,8 +22,8 @@ const Dashboard = () => {
     <div id='dashboard'>
       <h1>Dashboard</h1>
       <div id='chart-container'>
-        {sensors.map(s => {
-          return <p>{s.sensorName}: {s.value}</p>
+        {sensors.map(sensor => {
+          return <Gauge sensor={sensor} />
         })}
       </div>
     </div>

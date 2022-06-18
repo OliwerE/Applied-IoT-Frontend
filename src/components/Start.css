@@ -14,17 +14,13 @@
   text-decoration: none;
 }
 
-#start .link:hover {
-  color: #FCA800;
-}
-
 #start .link:after {
   display: block;
   content: '';
   transform: scaleX(0);
   transform-origin: 0% 50%;
   transition: transform 250ms ease-in-out;
-  border-bottom: 4px solid #FCA800;
+  border-bottom: 4px solid #000;
 }
 
 #start .link:hover:after {
