@@ -5,27 +5,51 @@ import './Gauge.css'
 
 const Gauge = ({ sensor }) => {
   const [gaugePercentage, setGaugePercentage] = useState(0)
+  const [arcsLength, setArcsLength] = useState([])
   
   useEffect(() => {
     handleCalculateGaugePercentage()
+    handleArcsLength()
   }, [])
 
   const handleCalculateGaugePercentage = () => {
     switch(sensor.sensorName) {
       case 'temperature':
-        setGaugePercentage(sensor.value / 100)
+        setGaugePercentage(sensor.value / 50) // 0-50°C
         break;
       case 'humidity':
         setGaugePercentage(sensor.value / 100)
         break;
       case 'heat-index':
-        setGaugePercentage(sensor.value / 100)
+        setGaugePercentage(sensor.value / 50)  // 0-50°C
         break;
       case 'atmospheric-pressure':
         setGaugePercentage((sensor.value - 87000) / 21480) // min = 87000, max = 108480 (lowest/highest ever recorded)
         break;
       case 'air-quality':
         setGaugePercentage(sensor.value / 500)
+        break;
+      default:
+        setGaugePercentage(0)
+    }
+  }
+
+  const handleArcsLength = () => {
+    switch(sensor.sensorName) {
+      case 'temperature':
+        setArcsLength([0.36, 0.16, 0.48])
+        break;
+      case 'humidity':
+        setArcsLength([0.2, 0.4, 0.4])
+        break;
+      case 'heat-index':
+        setArcsLength([0.36, 0.16, 0.48])
+        break;
+      case 'atmospheric-pressure':
+        setArcsLength([0.6052141527001862, 0.0616852886, 0.333100559])
+        break;
+      case 'air-quality':
+        setArcsLength([0.3, 0.4, 0.3])
         break;
       default:
         setGaugePercentage(0)
@@ -62,8 +86,8 @@ const Gauge = ({ sensor }) => {
       <GaugeChart
         id="gauge-chart"
         nrOfLevels={100}
-        arcsLength={[0.3, 0.5, 0.2]}
-        colors={['#5BE12C', '#F5CD19', '#EA4228']}
+        arcsLength={arcsLength}
+        colors={['#5BE12C', '#F5CD19', '#EA4228']} // ToDo fix colors!
         percent={gaugePercentage}
         arcPadding={0.02}
         needleColor='#9f9f9f'
