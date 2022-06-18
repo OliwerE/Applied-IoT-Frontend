@@ -4,12 +4,16 @@ import GaugeChart from 'react-gauge-chart'
 import './Gauge.css'
 
 const Gauge = ({ sensor }) => {
+  const [hasLoaded, setHasLoaded] = useState(false)
   const [gaugePercentage, setGaugePercentage] = useState(0)
   const [arcsLength, setArcsLength] = useState([])
+  const [arcsColors, setArcsColors] = useState([]) // ['#5BE12C', '#F5CD19', '#EA4228'] 
   
   useEffect(() => {
     handleCalculateGaugePercentage()
     handleArcsLength()
+    handleArcsColors()
+    setHasLoaded(true)
   }, [])
 
   const handleCalculateGaugePercentage = () => {
@@ -56,6 +60,28 @@ const Gauge = ({ sensor }) => {
     }
   }
 
+  const handleArcsColors = () => {
+    switch(sensor.sensorName) {
+      case 'temperature':
+        setArcsColors(['#4682b4', '#5BE12C', '#EA4228'])
+        break;
+      case 'humidity':
+        setArcsColors(['#F5CD19', '#5BE12C', '#EA4228'])
+        break;
+      case 'heat-index':
+        setArcsColors(['#4682b4', '#5BE12C', '#EA4228'])
+        break;
+      case 'atmospheric-pressure':
+        setArcsColors(['#F5CD19', '#5BE12C', '#EA4228'])
+        break;
+      case 'air-quality':
+        setArcsColors(['#5BE12C', '#F5CD19', '#EA4228'])
+        break;
+      default:
+        setArcsColors(['#5BE12C', '#F5CD19', '#EA4228'])
+    }
+  }
+
   const handleGaugeTextValue = () => {
     let text
     switch(sensor.sensorName) {
@@ -83,18 +109,18 @@ const Gauge = ({ sensor }) => {
   return (
     <div className='gauge'>
       <h1>{sensor.sensorName.replace('-', ' ')}</h1>
-      <GaugeChart
+      {hasLoaded ? <GaugeChart
         id="gauge-chart"
         nrOfLevels={100}
         arcsLength={arcsLength}
-        colors={['#5BE12C', '#F5CD19', '#EA4228']} // ToDo fix colors!
+        colors={arcsColors}
         percent={gaugePercentage}
         arcPadding={0.02}
         needleColor='#9f9f9f'
         needleBaseColor='#000'
         textColor='#fff'
         formatTextValue={handleGaugeTextValue}
-      />
+      /> : null}
     </div>
   )
 }
