@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+#dashboard {
+  min-height: calc(100vh - 150px);
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+#dashboard h1 {
+  text-align: center;
+}
+
+#dashboard #chart-container {
+  width: 100%;
+  height: 100%;
+  background-color: steelblue;
+}
+
+#dashboard #chart-container p {
+  margin: 0;
+}
