@@ -7,7 +7,7 @@ const Gauge = ({ sensor }) => {
   const [hasLoaded, setHasLoaded] = useState(false)
   const [gaugePercentage, setGaugePercentage] = useState(0)
   const [arcsLength, setArcsLength] = useState([])
-  const [arcsColors, setArcsColors] = useState([]) // ['#5BE12C', '#F5CD19', '#EA4228'] 
+  const [arcsColors, setArcsColors] = useState([])
   
   useEffect(() => {
     handleCalculateGaugePercentage()
@@ -95,7 +95,7 @@ const Gauge = ({ sensor }) => {
         text = `${sensor.value.toFixed(2)}°C`
         break;
       case 'atmospheric-pressure':
-        text = `${sensor.value} Pa`
+        text = `${(sensor.value / 1000).toFixed(2)} kPa`
         break;
       case 'air-quality':
         text = `VOC Index: ${sensor.value}`
