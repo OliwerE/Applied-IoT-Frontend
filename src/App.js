@@ -10,16 +10,16 @@ import PageNotFound from './components/PageNotFound';
 function App() {
   return (
   <>
-    <Header />
-    <main>
     <Router>
-      <Routes>
-        <Route exact path="/" element={<Start />} />
-        <Route exact path="/dashboard" element={<Dashboard />} />
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
+      <Header />
+      <main>
+        <Routes>
+          <Route exact path="/" element={<Start />} />
+          <Route exact path="/dashboard" element={<Dashboard />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </main>
     </Router>
-    </main>
     <Footer />
   </>
   )
