@@ -53,7 +53,7 @@ const Gauge = ({ sensor }) => {
         setArcsLength([0.6052141527001862, 0.0616852886, 0.333100559])
         break;
       case 'air-quality':
-        setArcsLength([0.3, 0.4, 0.3])
+        setArcsLength([0.4, 0.4, 0.2])
         break;
       default:
         setGaugePercentage(0)
