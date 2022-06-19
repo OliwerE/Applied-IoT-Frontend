@@ -20,7 +20,7 @@ const Dashboard = () => {
 
   return (
     <div id='dashboard'>
-      <h1>dashboard</h1>
+      <h1>Dashboard</h1>
       <div id='chart-container'>
         {sensors.map(sensor => {
           return <Gauge sensor={sensor} />
