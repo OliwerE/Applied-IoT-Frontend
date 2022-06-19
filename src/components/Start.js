@@ -4,7 +4,7 @@ import './Start.css'
 
 const Start = () => {
   return (
-    <div id='start'>
+    <div id='start' >
       <div>
         <Link className='link' to="/dashboard">Open Dashboard &#x2192;</Link>
       </div>

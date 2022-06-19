@@ -1,14 +1,16 @@
 @charset "UTF-8";
 
 #dashboard {
-  min-height: calc(100vh - 150px);
+  min-height: calc(100vh - 175px);
   padding: 1rem;
   box-sizing: border-box;
+  background-image: url('../images/start-background.jpg');
 }
 
 #dashboard h1 {
   text-align: center;
   font-family: 'Roboto', sans-serif;
+  color: #fff;
 }
 
 #dashboard #chart-container {
