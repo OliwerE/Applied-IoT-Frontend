@@ -5,6 +5,7 @@ import './Header.css'
 const Header = () => {
   return (
     <div id="header">
+      <img width={50} src='/logo192.png' alt='logo'/>
       <h1>IoT Dashboard</h1>
       <nav>
         <ul>
