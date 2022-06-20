@@ -8,7 +8,6 @@ const Gauges = () => {
     fetch(`${process.env.REACT_APP_BASE_URL}/sensors`).then(res => {
       return res.json()
     }).then(json => {
-      console.log(json)
       setSensors(json.sensors)
     }).catch(err => {
       console.error(err)
@@ -20,7 +19,7 @@ const Gauges = () => {
       {sensors.map(sensor => {
         return <Gauge sensor={sensor} />
       })}
-  </>
+    </>
   )
 }
 
