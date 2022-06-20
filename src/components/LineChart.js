@@ -84,13 +84,13 @@ const LineChart = ({ sensorName, sensorValues }) => {
       legend: {
         position: 'top',
         labels: {
-          color: '#707070'
+          color: '#fff'
         }
       },
       title: {
         display: true,
         text: sensorName.replaceAll('-', ' '),
-        color: '#707070'
+        color: '#fff'
       }
     },
     scales: {
@@ -101,7 +101,7 @@ const LineChart = ({ sensorName, sensorValues }) => {
           color: "#707070"
         },
         ticks: {
-          color: '#707070'
+          color: '#fff'
         }
       },
       y: {
@@ -111,7 +111,7 @@ const LineChart = ({ sensorName, sensorValues }) => {
           color: "#707070"
         },
         ticks: {
-          color: '#707070'
+          color: '#fff'
         }
       }
     }
