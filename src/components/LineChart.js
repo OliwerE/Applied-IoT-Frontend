@@ -44,6 +44,7 @@ const LineChart = ({ sensorName, sensorValues }) => {
         {
           label,
           data: sensorData.reverse(),
+          spanGaps: true,
           borderColor: 'rgb(255, 99, 132)',
           backgroundColor: 'rgba(255, 99, 132, 0.5)'
         }
