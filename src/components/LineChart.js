@@ -76,8 +76,8 @@ const LineChart = ({ sensorName, sensorValues }) => {
       case 'heat-index':
         label = 'Heat Index (°C)'
         break;
-      case 'atmospheric-pressure':
-        label = 'Atmospheric pressure (Pa)'
+      case 'air-pressure':
+        label = 'Air pressure (Pa)'
         break;
       case 'air-quality':
         label = 'Air quality (VOC Index)'

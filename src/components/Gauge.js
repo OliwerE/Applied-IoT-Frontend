@@ -27,7 +27,7 @@ const Gauge = ({ sensor }) => {
       case 'heat-index':
         setGaugePercentage(sensor.value / 50)  // 0-50°C
         break;
-      case 'atmospheric-pressure':
+      case 'air-pressure':
         setGaugePercentage((sensor.value - 87000) / 21480) // min = 87000, max = 108480 (lowest/highest ever recorded)
         break;
       case 'air-quality':
@@ -49,7 +49,7 @@ const Gauge = ({ sensor }) => {
       case 'heat-index':
         setArcsLength([0.36, 0.16, 0.48])
         break;
-      case 'atmospheric-pressure':
+      case 'air-pressure':
         setArcsLength([0.6052141527001862, 0.0616852886, 0.333100559])
         break;
       case 'air-quality':
@@ -71,7 +71,7 @@ const Gauge = ({ sensor }) => {
       case 'heat-index':
         setArcsColors(['#4682b4', '#5BE12C', '#EA4228'])
         break;
-      case 'atmospheric-pressure':
+      case 'air-pressure':
         setArcsColors(['#F5CD19', '#5BE12C', '#EA4228'])
         break;
       case 'air-quality':
@@ -94,7 +94,7 @@ const Gauge = ({ sensor }) => {
       case 'heat-index':
         text = `${sensor.value.toFixed(2)}°C`
         break;
-      case 'atmospheric-pressure':
+      case 'air-pressure':
         text = `${(sensor.value / 1000).toFixed(2)} kPa`
         break;
       case 'air-quality':
