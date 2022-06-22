@@ -5,7 +5,7 @@ const LineCharts = () => {
   const [sensorsAvg, setSensorsAvg] = useState({})
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_BASE_URL}/sensors/avg/day`).then(res => {
+    fetch(`${process.env.REACT_APP_BASE_URL}/sensors/avg/hour/all`).then(res => {
       return res.json()
     }).then(json => {
       setSensorsAvg(json.sensors)
