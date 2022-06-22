@@ -45,18 +45,6 @@ const LineChart = ({ sensorName, sensorValues }) => {
       sensorData.push(valuesFromSensors[i].value)
     }
 
-    /*
-    valuesFromSensors.map((sensorReport) => {
-      if (timeUnit === ' days ago') {
-        timeAgoLabels.push(sensorReport.daysAgo + timeUnit)
-      } else {
-        timeAgoLabels.push(sensorReport.hoursAgo + timeUnit)
-      }
-      sensorData.push(sensorReport.value)
-    })
-    */
-
-
     const label = getLabel(sensorName)
 
     const data = {
@@ -89,7 +77,7 @@ const LineChart = ({ sensorName, sensorValues }) => {
         label = 'Heat Index (°C)'
         break;
       case 'atmospheric-pressure':
-        label = 'Atmospheric pressure (kPa)'
+        label = 'Atmospheric pressure (Pa)'
         break;
       case 'air-quality':
         label = 'Air quality (VOC Index)'
@@ -180,8 +168,6 @@ const LineChart = ({ sensorName, sensorValues }) => {
     fetch(url).then(res => {
       return res.json()
     }).then(json => {
-      // setSensorsAvg(json.sensors)
-      // sensorValues = json.sensors
       setValuesFromSensors(json.sensors[sensorName])
       console.log(json)
     }).catch(err => {
