@@ -15,7 +15,9 @@ import './LineChart.css'
 
 const LineChart = ({ sensorName, sensorValues }) => {
   const [hasLoaded, setHasLoaded] = useState(false)
+  const [valuesFromSensors, setValuesFromSensors] = useState(sensorValues)
   const [chartData, setChartData] = useState({})
+  const [chartTimeUnit, setChartTimeUnit] = useState('hour')
 
   ChartJS.register(
     CategoryScale,
@@ -31,10 +33,17 @@ const LineChart = ({ sensorName, sensorValues }) => {
     const timeAgoLabels = []
     const sensorData = []
 
-    sensorValues.map((sensorReport) => {
-      timeAgoLabels.push(sensorReport.hoursAgo + ' hours ago') // change to moment, send Date from backend??
-      sensorData.push(sensorReport.value)
-    })
+    let timeUnit
+    if (chartTimeUnit === 'day') {
+      timeUnit = ' days ago'
+    } else {
+      timeUnit = ' hours ago'
+    }
+
+    for (let i = 0; i < valuesFromSensors.length; i++) {
+      timeAgoLabels.push(valuesFromSensors[i].timeAgo + timeUnit)
+      sensorData.push(valuesFromSensors[i].value)
+    }
 
     const label = getLabel(sensorName)
 
@@ -53,7 +62,7 @@ const LineChart = ({ sensorName, sensorValues }) => {
 
     setChartData(data)
     setHasLoaded(true)
-  }, [])
+  }, [chartTimeUnit, valuesFromSensors])
 
   const getLabel = (sensorName) => {
     let label
@@ -68,7 +77,7 @@ const LineChart = ({ sensorName, sensorValues }) => {
         label = 'Heat Index (°C)'
         break;
       case 'atmospheric-pressure':
-        label = 'Atmospheric pressure (kPa)'
+        label = 'Atmospheric pressure (Pa)'
         break;
       case 'air-quality':
         label = 'Air quality (VOC Index)'
@@ -91,7 +100,10 @@ const LineChart = ({ sensorName, sensorValues }) => {
       title: {
         display: true,
         text: sensorName.replaceAll('-', ' '),
-        color: '#fff'
+        color: '#fff',
+                font: {
+          size: 25
+        }
       }
     },
     scales: {
@@ -118,8 +130,59 @@ const LineChart = ({ sensorName, sensorValues }) => {
     }
   }
 
+  const handleOnIntervalChange = (e) => {
+    const { value } = e.target
+    
+    let timeUnit
+    if (value === '24h') {
+      timeUnit = 'hour'
+    } else {
+      timeUnit = 'day'
+    }
+    setChartTimeUnit(timeUnit)
+
+    console.log('interval changed!!')
+    console.log(value)
+
+    let query = ''
+    switch(value) {
+      case '24h':
+        query = ''
+        break;
+      case '7d':
+       query = '?days=7'
+        break;
+      case '14d':
+        query = '?days=14'
+        break;
+      case '30d':
+        query = '?days=30'
+        break;
+      default:
+        query = ''
+    }
+
+
+    const url = `${process.env.REACT_APP_BASE_URL}/sensors/sensor/avg/${timeUnit}/${sensorName}/${query}`
+
+    fetch(url).then(res => {
+      return res.json()
+    }).then(json => {
+      setValuesFromSensors(json.sensors[sensorName])
+      console.log(json)
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
   return (
     <div className='line-chart'>
+      <select onChange={(e) => handleOnIntervalChange(e)} className="interval" name="interval">
+        <option value="24h">24 hours</option>
+        <option value="7d">7 days</option>
+        <option value="14d">14 days</option>
+        <option value="30d">30 days</option>
+      </select>
       {hasLoaded ? <Line options={chartOptions} data={chartData} /> : null}
     </div>
     )

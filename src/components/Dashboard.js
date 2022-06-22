@@ -10,8 +10,10 @@ const Dashboard = () => {
   return (
     <div id='dashboard'>
       <h1>Dashboard</h1>
-      <div id='chart-container'>
+      <div id='gauge-container'>
         <Gauges />
+      </div>
+      <div id='chart-container'>
         <LineCharts />
       </div>
     </div>
