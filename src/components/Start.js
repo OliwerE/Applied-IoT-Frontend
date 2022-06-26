@@ -6,7 +6,7 @@ const Start = () => {
   return (
     <div id='start' >
       <div>
-        <Link className='link' to="/dashboard">Open Dashboard &#x2192;</Link>
+        <Link className='link' to="/dashboard">Open Dashboard</Link>
       </div>
     </div>
   )
