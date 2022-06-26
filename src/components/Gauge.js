@@ -106,9 +106,16 @@ const Gauge = ({ sensor }) => {
     return text
   }
 
+  const handleGaugeTitle = () => {
+    let title = sensor.sensorName
+    title = title.replace('-', ' ')
+    title = title.charAt(0).toUpperCase() + title.slice(1)
+    return title
+  }
+
   return (
     <div className='gauge'>
-      <h1>{sensor.sensorName.replace('-', ' ')}</h1>
+      <h1>{handleGaugeTitle()}</h1>
       {hasLoaded ? <GaugeChart
         id="gauge-chart"
         nrOfLevels={100}
