@@ -5,10 +5,12 @@
   align-items: center;
   justify-content: center;
   height: calc(100vh - 150px);
+  padding: 1rem;
 }
 
 #page-not-found h1 {
   margin: 0;
   padding: 0;
   color: #FCA800;
+  text-align: center;
 }
