@@ -88,6 +88,16 @@ const LineChart = ({ sensorName, sensorValues }) => {
     return label
   }
 
+  const handleGetChartTitle = () => {
+    let title = sensorName
+    title = title.replaceAll('-', ' ')
+    title = title.charAt(0).toUpperCase() + title.slice(1)
+    return title
+
+
+    
+  }
+
   const chartOptions = {
     responsive: true,
     plugins: {
@@ -99,7 +109,7 @@ const LineChart = ({ sensorName, sensorValues }) => {
       },
       title: {
         display: true,
-        text: sensorName.replaceAll('-', ' '),
+        text: handleGetChartTitle(),
         color: '#fff',
                 font: {
           size: 25
